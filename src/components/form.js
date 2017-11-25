@@ -52,7 +52,6 @@ class ExpenseForm extends Component {
           className="form-control"
           value={this.state.amount}
           onChange={this.onAmountChange}
-          autoFocus
           />
         </div>
         <div className="form-group">
