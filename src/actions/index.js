@@ -11,3 +11,11 @@ export const addExpense = ({description='', note= '', amount= 0}={}) => {
     }
   }
 }
+
+export const editExpense = (id, expense) => {
+  return {
+    type: 'EDIT_EXPENSE',
+    id: id,
+    expense: expense
+  }
+}
