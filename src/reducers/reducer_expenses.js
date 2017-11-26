@@ -9,7 +9,9 @@ export default function(state=[], action) {
         } else {
           return expense
         }
-      })
+      });
+    case 'REMOVE_EXPENSE':
+      return state.filter(({id}) => id !== action.id);
     default:
       return state
   }

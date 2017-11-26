@@ -19,3 +19,10 @@ export const editExpense = (id, expense) => {
     expense: expense
   }
 }
+
+export const removeExpense = (id) => {
+  return {
+    type: 'REMOVE_EXPENSE',
+    id: id
+  }
+}
