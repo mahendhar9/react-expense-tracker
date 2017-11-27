@@ -8,7 +8,7 @@ const ExpenseListItem = (props) => {
       <Link to={`/edit/${expense.id}`}>
         <p>{expense.description}</p>
       </Link>
-      <p>{expense.amount}</p>
+      <p>{(expense.amount)/100}</p>
       <p>{expense.note}</p>
     </div>
   )

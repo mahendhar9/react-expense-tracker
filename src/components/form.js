@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from 'moment';
 
 class ExpenseForm extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class ExpenseForm extends Component {
       description: props.expense ? props.expense.description : '',
       amount: props.expense ? (props.expense.amount/100).toString() : '',
       note: props.expense ? props.expense.note : '',
-      // createdAt: props.expense ? props.expense.description : '',
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       error: ''
     };
   }
@@ -34,7 +35,8 @@ class ExpenseForm extends Component {
       this.props.onSubmit({
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
-        note: this.state.note
+        note: this.state.note,
+        createdAt: this.state.createdAt.valueOf()
       })
     }
   }

@@ -4,3 +4,11 @@ export const setTextFilter = (text='') => (
     text: text
   }
 )
+
+export const sortByDate = () => ({
+  type: 'SORT_BY_DATE'
+});
+
+export const sortByAmount = () => ({
+  type: 'SORT_BY_AMOUNT'
+});
