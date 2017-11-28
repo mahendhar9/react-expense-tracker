@@ -26,7 +26,7 @@ class EditExpense extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    expense: state.expenses.find(expense => expense.id == props.match.params.id)
+    expense: state.expenses.find(expense => expense.id === props.match.params.id)
   }
 }
 export default connect(mapStateToProps, {editExpense, removeExpense})(EditExpense);
