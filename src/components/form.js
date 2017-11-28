@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from 'moment';
+import { SingleDatePicker } from 'react-dates';
 
 class ExpenseForm extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class ExpenseForm extends Component {
       amount: props.expense ? (props.expense.amount/100).toString() : '',
       note: props.expense ? props.expense.note : '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      calendarFocused: false,
       error: ''
     };
   }
@@ -24,6 +26,16 @@ class ExpenseForm extends Component {
 
   onNoteChange = (e) => {
     this.setState({ note: e.target.value });
+  }
+
+  onDateChange = (createdAt) => {
+    if(createdAt) {
+      this.setState({createdAt: createdAt});
+    }
+  }
+
+  onFocusChange = ({focused}) => {
+    this.setState({calendarFocused: focused});
   }
 
   onSubmit = (e) => {
@@ -72,6 +84,14 @@ class ExpenseForm extends Component {
             >
             </textarea>
           </div>
+          <SingleDatePicker
+            date = {this.state.createdAt}
+            onDateChange={this.onDateChange}
+            focused={this.state.calendarFocused}
+            onFocusChange={this.onFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+          />
           <button type="submit"
             className="btn btn-primary"
           >
