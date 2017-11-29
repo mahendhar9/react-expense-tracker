@@ -21,7 +21,11 @@ class ExpenseForm extends Component {
   }
 
   onAmountChange = (e) => {
-    this.setState({ amount: e.target.value });
+    const amount = e.target.value;
+
+    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
+      this.setState({ amount });
+    }
   }
 
   onNoteChange = (e) => {
