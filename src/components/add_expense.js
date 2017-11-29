@@ -13,11 +13,16 @@ class AddExpense extends Component {
   render() {
     return (
       <div>
-        <NavLink to="/" activeClassName="active">Home</NavLink>
-        <NavLink to="/add-expense" activeClassName="active">Add Expense</NavLink>
-
-        <h1>Add Expense</h1>
-        <ExpenseForm onSubmit={this.onSubmit}/>
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Add Expense</h1>
+          </div>
+        </div>
+        <div className="content-container">
+          <ExpenseForm
+            onSubmit={this.onSubmit}
+          />
+        </div>
       </div>
     )
   }

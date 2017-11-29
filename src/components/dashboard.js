@@ -1,13 +1,21 @@
 import React from "react";
 import ExpenseList from "./expense_list";
 import Filters from "./filters";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ExpensesSummary from "./expenses_summary";
+import "../styles/styles.css";
 
 const Dashboard = () => (
   <div>
-    <NavLink to="/" activeClassName="active">Home</NavLink>
-    <NavLink to="/add-expense" activeClassName="active">Add Expense</NavLink>
+    <header className="header">
+      <div className="content-container">
+        <div className="header__content">
+          <Link className="header__title" to="/">
+            <h1>React - Expense Tracker</h1>
+          </Link>
+        </div>
+      </div>
+    </header>
     <ExpensesSummary />
     <Filters />
     <ExpenseList />

@@ -27,14 +27,18 @@ class Filters extends Component {
 
   render() {
     return (
-      <div>
-        <input type="text" value={this.props.filters.text} onChange={this.onTextChange} className="form-control" />
-
-        <select value={this.props.filters.sortBy} onChange={this.onSortChange} className="form-control">
-          <option value="date">Date</option>
-          <option value="amount">Amount</option>
-        </select>
-
+      <div className="content-container">
+        <div className="input-group">
+          <div className="input-group__item">
+            <input type="text" value={this.props.filters.text} onChange={this.onTextChange} className="text-input" placeholder="Search expenses" />
+          </div>
+          <div className="input-group__item">
+            <select value={this.props.filters.sortBy} onChange={this.onSortChange} className="select" >
+              <option value="date">Date</option>
+              <option value="amount">Amount</option>
+            </select>
+          </div>
+          <div className="input-group__item">
         <DateRangePicker 
           startDate={this.props.filters.startDate}
           endDate={this.props.filters.endDate}
@@ -45,6 +49,8 @@ class Filters extends Component {
           isOutsideRange={() => false}
           showClearDates={true}
         />
+          </div>
+        </div>
       </div>
     )
   }

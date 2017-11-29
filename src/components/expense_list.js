@@ -5,17 +5,27 @@ import selectExpenses from "../selectors/expenses";
 
 class ExpenseList extends Component {
   render() {
-    <h1>Expenses</h1>
-    if (this.props.expenses.length === 0) {
-      return <p> No expenses </p>
-    }
     return (
-      <div>
-        {
-          this.props.expenses.map((expense) => {
-            return <ExpenseListItem key={expense.id} expense={expense} />
-          })
-        }
+      <div className="content-container">
+        <div className="list-header">
+          <div className="show-for-mobile">Expenses</div>
+          <div className="show-for-desktop">Expense</div>
+          <div className="show-for-desktop">Amount</div>
+        </div>
+
+        <div className="list-body">
+          {
+            this.props.expenses.length === 0 ? (
+              <div className="list-item list-item--message">
+                  <span>No expenses</span>
+            </div>
+            ) : (
+              this.props.expenses.map((expense) => {
+                return <ExpenseListItem key={expense.id} expense={expense} />
+              })
+            )
+          }
+        </div>
       </div>
     )
   }
