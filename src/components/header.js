@@ -10,7 +10,7 @@ const Header = (props) => (
         <Link className="header__title" to="/dashboard">
           <h1>React - Expense Tracker</h1>
         </Link>
-        <button onClick={props.startLogout}>Logout</button>
+        <button className="button" onClick={props.startLogout}>Logout</button>
       </div>
     </div>
   </header>

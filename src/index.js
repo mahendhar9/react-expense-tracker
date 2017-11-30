@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import { startFetchExpenses } from "./actions/expenses";
 import { firebase } from "./firebase";
 import { login, logout } from "./actions/auth";
+import LoadingPage from "./components/loading_page";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -30,7 +31,7 @@ const renderApp = () => {
   } 
 }
 
-ReactDOM.render(<p>Loading...</p>, document.querySelector('.container'));
+ReactDOM.render(<LoadingPage />, document.querySelector('.container'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
