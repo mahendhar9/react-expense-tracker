@@ -13,7 +13,7 @@ import 'react-dates/lib/css/_datepicker.css';
 export const history = createHistory();
 
 const AppRouter = () => (
-  <Router history={history}>
+  <Router history={history} basename={'/react-expense-tracker'}>
     <Switch>
       <PublicRoute path="/" component={ LoginPage } exact={ true } />
       <PrivateRoute path="/dashboard" component={ Dashboard } exact={true} />
