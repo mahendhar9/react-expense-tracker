@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers';
-import AppRouter from './routes';
+import AppRouter, { history } from './routes';
 import thunk from "redux-thunk";
 import { startFetchExpenses } from "./actions/expenses";
 import { firebase } from "./firebase";
@@ -20,17 +20,28 @@ const jsx = (
     <AppRouter />
   </Provider>
 )
-ReactDOM.render(<p>Loading...</p>, document.querySelector('.container'));
 
-store.dispatch(startFetchExpenses()).then(() => {
-  ReactDOM.render(jsx, document.querySelector('.container'));
-});
+let hasRendered = false;
+const renderApp = () => {
+  if(!hasRendered) {
+    ReactDOM.render(jsx, document.querySelector('.container'));
+    hasRendered = true;
+  } 
+}
+
+ReactDOM.render(<p>Loading...</p>, document.querySelector('.container'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
-    console.log("Login");
+    store.dispatch(startFetchExpenses()).then(() => {
+      renderApp();
+      if(history.location.pathname === '/') {
+        history.push('/dashboard');
+      }
+    });
   } else {
-    console.log("Log out");
+    renderApp();
+    history.push('/');
   }
 })
 
