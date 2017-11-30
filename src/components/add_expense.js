@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addExpense } from "../actions/expenses";
+import { startAddExpense } from "../actions/expenses";
 import { NavLink } from 'react-router-dom';
 import ExpenseForm from "./form";
 
 class AddExpense extends Component {
   onSubmit = (expense) => {
-    this.props.addExpense(expense);
+    this.props.startAddExpense(expense);
     this.props.history.push('/');
   }
 
@@ -28,4 +28,4 @@ class AddExpense extends Component {
   }
 }
 
-export default connect(null, { addExpense })(AddExpense);
+export default connect(null, { startAddExpense })(AddExpense);
