@@ -7,6 +7,7 @@ import AppRouter, { history } from './routes';
 import thunk from "redux-thunk";
 import { startFetchExpenses } from "./actions/expenses";
 import { firebase } from "./firebase";
+import { login, logout } from "./actions/auth";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -33,6 +34,7 @@ ReactDOM.render(<p>Loading...</p>, document.querySelector('.container'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
+    store.dispatch(login(user.uid));
     store.dispatch(startFetchExpenses()).then(() => {
       renderApp();
       if(history.location.pathname === '/') {
@@ -40,6 +42,7 @@ firebase.auth().onAuthStateChanged((user) => {
       }
     });
   } else {
+    store.dispatch(logout());
     renderApp();
     history.push('/');
   }
